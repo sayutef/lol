@@ -6,7 +6,23 @@ body {
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 20px;
+}
+
+input {
+    padding: 8px;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 table {
@@ -22,20 +38,4 @@ th, td {
 
 th {
     background-color: #f4f4f4;
-}
-
-.btn {
-    padding: 5px 10px;
-    text-decoration: none;
-    border: 1px solid #333;
-    display: inline-block;
-    margin-top: 5px;
-}
-
-.btn-delete {
-    color: red;
-}
-
-.btn-edit {
-    color: blue;
 }

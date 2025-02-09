@@ -1,26 +1,61 @@
-
 <h1>Gestión de Carros</h1>
 
-<form action="#" method="POST">
-    <label for="car">Nombre del carro:</label>
-    <input type="text" id="car" name="car" required>
-    <button type="submit">Agregar</button>
-</form>
+
+<form (ngSubmit)="addCar">
+    <label for="make">Marca:</label>
+    <input type="text" id="make" name="make" [value]="newCar.make" (input)="updateCarValue('make', $event)" required>
+  
+    <label for="model">Modelo:</label>
+    <input type="text" id="model" name="model" [value]="newCar.model" (input)="updateCarValue('model', $event)" required>
+  
+    <label for="year">Año:</label>
+    <input type="number" id="year" name="year" [value]="newCar.year" (input)="updateCarValue('year', $event)" required>
+  
+    <label for="mileage">Kilometraje:</label>
+    <input type="number" id="mileage" name="mileage" [value]="newCar.mileage" (input)="updateCarValue('mileage', $event)" required>
+  
+    <label for="fuel_type">Tipo de Combustible:</label>
+    <input type="text" id="fuel_type" name="fuel_type" [value]="newCar.fuelType" (input)="updateCarValue('fuelType', $event)" required>
+  
+    <button type="submit">Agregar Carro</button>
+  </form>
+  
+  
 
 <table>
-    <thead>
-        <tr>
-            <th>Carro</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ejemplo Carro</td>
-            <td>
-                <a href="#" class="btn btn-edit">Editar</a>
-                <a href="#" class="btn btn-delete">Eliminar</a>
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Año</th>
+      <th>Kilometraje</th>
+      <th>Combustible</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.id }}</td>
+      <td>
+        <input [value]="car.make" (input)="car.make = $event.target?.addEventListener" [readonly]="!carsInEditMode.has(car.id)">
+      </td>
+      <td>
+        <input [value]="car.model" (input)="car.model = $event.target?.addEventListener" [readonly]="!carsInEditMode.has(car.id)">
+      </td>
+      <td>
+        <input [value]="car.year" (input)="car.year = $event.target?.addEventListener" type="number" [readonly]="!carsInEditMode.has(car.id)">
+      </td>
+      <td>
+        <input [value]="car.mileage" (input)="car.mileage = $event.target?.addEventListener" type="number" [readonly]="!carsInEditMode.has(car.id)">
+      </td>
+      <td>
+        <input [value]="car.fuelType" (input)="car.fuelType = $event.target?.addEventListener" [readonly]="!carsInEditMode.has(car.id)">
+      </td>
+      <td>
+        <button (click)="toggleEdit(car)">{{ carsInEditMode.has(car.id) ? 'Guardar' : 'Editar' }}</button>
+        <button (click)="deleteCar(car.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
 </table>

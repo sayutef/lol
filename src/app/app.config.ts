@@ -1,10 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { ProductGateway } from './products/domain/models/gateway/product-gateway';
-import { ProductApiService } from './products/infraestructure/driver-adapter/product-api.service';
+import { CarGateway } from './products/domain/models/gateway/car-gateway';
+import { CarApiService } from './products/infraestructure/driver-adapter/car-api.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // ✅ Importa la implementación
 
 export const appConfig: ApplicationConfig = {
@@ -12,7 +12,8 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    { provide: ProductGateway, useClass: ProductApiService }, // ✅ Inyecta la implementación correcta
-    provideClientHydration(), provideAnimationsAsync(), provideAnimationsAsync()
+    { provide: CarGateway, useClass: CarApiService }, // ✅ Inyecta la implementación correcta
+    provideClientHydration(),
+    provideAnimationsAsync(),
   ]
 };
