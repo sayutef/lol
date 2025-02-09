@@ -15,7 +15,7 @@ export class ProductApiService extends ProductGateway {
   constructor(private http: HttpClient) {super();}
 
   create(name: string, price: number): Observable<Product> {
-    const payload = { name, price };  // Crear objeto JSON correcto
+    const payload = { name, price };  
     return this.http.post<Product>(this.apiUrl, payload, {
         headers: { 'Content-Type': 'application/json' }
     });
